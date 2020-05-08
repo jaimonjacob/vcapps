@@ -37,82 +37,79 @@ xhr.addEventListener('load', function () {
 
     console.log(summativeData);
 
-
-    var vBarConfig = {
-      "type": "hbar",
-      "legend": {
-        "marker": {
-          "cursor": "hand"
-        },
-        "item": {
-          "cursor": "hand"
-        },
-        "border-color": "none",
-        "align": "center",
-        "vertical-align": "bottom",
-        "max-items": 4,
-        "overflow": "page",
-        "page-on": {
-          "background-color": "black",
-          "border-width": 1,
-          "border-color": "black"
-        },
-        "page-off": {
-          "background-color": "#0091DA",
-          "border-width": 1,
-          "border-color": "white"
-        },
-        "page-status": {
-          "font-color": "white",
-          "font-size": 11,
-          "font-family": "Georgia",
-          "background-color": "#0091DA"
-        },
-        "toggle-action": "none"
-      },
-      "plotarea": {
-        "margin": "dynamic",
-        "border-top": "1px solid grey",
-        "border-right": "1px solid grey"
-      },
-      "scale-x": {
-        "auto-fit": true,
-        "line-width": 1,
-        "items-overlap": true,
-        "item": {
-          "angle": 0,
-          "wrap-text": true
-        }
-      },
-      "scale-y": {
-        "ref-line": {
-          "visible": true,
-          "line-style": "solid",
-          "items-overlap": true
-        },
-        "guide": {
-          "line-style": "solid"
-        }
-      },
-      "plot": {
-        
-        "animation": {
-          "effect": "ANIMATION_SLIDE_BOTTOM",
-          "speed": "2000"
-        }
-      },
-
-      "series": [{
-        "values": summativeData
-      }]
-    };
-
-    zingchart.render({
-      id: 'chartOne',
-      data: vBarConfig,
-      height: '100%',
-      width: '100%'
+    var xValues = summativeData.map(function(x){
+    return x[0];
     })
+
+    var yValues = summativeData.map(function(x){
+      return x[1];
+    })
+    console.log(xValues);
+    console.log(yValues);
+   //Chart Code Here
+/* 
+   var data = [
+    {
+      x: summativeData.map(function(x){
+        return x[1]
+        }),
+
+      y: summativeData.map(function(x){
+        return x[0]
+        }),
+      type: 'bar',
+      orientation: 'h'
+    }
+  ];
+  
+  Plotly.newPlot('myDiv', data);
+
+     */
+
+  var myChart = document.getElementById("myChart").getContext("2d");
+  var barChart = new Chart(myChart, {
+    type: "bar",
+    data: {
+      labels: xValues,
+      datasets: [{
+        label: "score",
+        data: yValues,
+        backgroundColor: "#0091DA",
+        borderWidth: 1,
+        borderColor: "#00338D",
+        hoverBorderWidth: 2,
+        hoverBorderColor: "#6D2077"
+      }]
+    },
+    options: {
+      title:{
+        display: true,
+        text: "The score dashboard",
+        fontSize: 25
+      },
+      legend: {
+        position: "right"
+      },
+      layout: {
+        padding: 20
+      },
+      tooltips: {
+        enabled: true
+      },
+      scales: {
+        yAxes: [{
+            ticks: {
+                suggestedMin: 10,
+                suggestedMax: 50
+            }
+        }]
+    }
+    }
+
+
+  })
+
+   //Chart code above 
   }
 });
 xhr.open('GET', 'https://watershedlrs.com/api/organizations/10981/lrs/statements');
