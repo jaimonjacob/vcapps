@@ -6,10 +6,9 @@ xhr.addEventListener('load', function () {
     var statements = response.statements;
     console.log(statements)
     var statementsData = [];
-
     statements.forEach(function (statement) {
+           
       if (statement.verb.id !== "http://adlnet.gov/expapi/verbs/voided") {
-
         var valueOne = statement.actor.name;
         delete valueOne.mbox;
         delete valueOne.objectType;
@@ -17,6 +16,7 @@ xhr.addEventListener('load', function () {
         var valueThree = statement.verb.display["en-US"];
         var valuTwo = statement.result.score.scaled;
         statementsData.push([valueOne, valuTwo, valueThree]);
+      
       }
     });
 
