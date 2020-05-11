@@ -17,7 +17,7 @@ lrs.queryStatements({
     verb: new TinCan.Verb({
       id: 'http://adlnet.gov/expapi/verbs/completed',
     }),
-    since: '2020-05-11T08:34:16Z',
+    since: '2020-05-10T08:34:16Z',
   },
   callback: function (err, sr) {
     if (err !== null) {
