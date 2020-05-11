@@ -89,12 +89,12 @@ lrs.queryStatements({
         ],
       },
       options: {
-        title: {
+       /*  title: {
           display: false,
           text: 'score dashboard',
           fontColor: '#E5E2E8',
           fontSize: 25,
-        },
+        }, */
         legend: {
           position: 'right',
           labels: {
