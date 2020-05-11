@@ -90,7 +90,7 @@ lrs.queryStatements({
       },
       options: {
         title: {
-          display: true,
+          display: false,
           text: 'score dashboard',
           fontColor: '#E5E2E8',
           fontSize: 25,
