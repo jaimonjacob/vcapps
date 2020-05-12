@@ -10,7 +10,7 @@ fetch('https://watershedlrs.com/api/organizations/10981/lrs/statements', {
   return response.json();
 })
 .then(function(data){
-console.log(data);
+//console.log(data);
 var statements = data.statements;
 var validStatements = statements.filter(function (el) {
       return el.verb.id ==="http://adlnet.gov/expapi/verbs/completed";
@@ -18,16 +18,16 @@ var validStatements = statements.filter(function (el) {
  var refinedStatements = validStatements.filter(function (el) {
       return el.actor.name
     })
-    console.log("refinedStatements before");
-    console.log(refinedStatements);
+    //console.log("refinedStatements before");
+    //console.log(refinedStatements);
     var refinedData=[];
    refinedStatements.forEach(function (statement) {
        
          refinedData.push([statement.actor.name, statement.object.name, statement.result.score.raw]);
       
       })
-    console.log("summativeData after");  
-    console.log(refinedData);
+    //console.log("summativeData after");  
+    //console.log(refinedData);
     var sum = {}, summativeData;
     for (var i = 0, c; c = refinedData[i]; ++i) {
       if (undefined === sum[c[0]]) {
@@ -43,8 +43,8 @@ var validStatements = statements.filter(function (el) {
     return b[2] - a[2];
     });
 
-    console.log("sortedArray");
-    console.log(sortedArray);
+    //console.log("sortedArray");
+    //console.log(sortedArray);
   
     var xValues = sortedArray.map(function(x){
     return x[0];
@@ -53,8 +53,8 @@ var validStatements = statements.filter(function (el) {
     var yValues = sortedArray.map(function(x){
       return x[2];
     })
-    console.log(xValues);
-    console.log(yValues);
+    //console.log(xValues);
+    //console.log(yValues);
      var myChart = document.getElementById('myChart').getContext('2d')
     var barChart = new Chart(myChart, {
       type: 'bar',
