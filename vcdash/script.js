@@ -58,15 +58,19 @@ lrs.queryStatements({
       }
     }
     summativeData = Object.keys(sum).map(function (val) { return sum[val] });
+    var sortedArray = summativeData.sort(function(a, b) {
+    return b[3] - a[3];
+    });
+    console.log("sortedArray");
+    console.log(sortedArray);
+    
 
-    console.log(summativeData);
-
-    var xValues = summativeData.map(function(x){
+    var xValues = sortedArray.map(function(x){
     return x[0];
     })
 
-    var yValues = summativeData.map(function(x){
-      return x[1];
+    var yValues = sortedArray.map(function(x){
+      return x[2];
     })
     console.log(xValues);
     console.log(yValues);
