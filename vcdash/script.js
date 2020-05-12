@@ -42,7 +42,7 @@ lrs.queryStatements({
    var refinedData=[];
    refinedStatements.forEach(function (statement) {
        
-         refinedData.push([statement.actor.name, statement.result.score.raw]);
+         refinedData.push([statement.actor.name, statement.target.name, statement.result.score.raw]);
       
       })
     console.log("summativeData after");  
