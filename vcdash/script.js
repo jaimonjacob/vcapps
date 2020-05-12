@@ -1,53 +1,33 @@
-var lrs
-
-try {
-  lrs = new TinCan.LRS({
-    endpoint: 'https://watershedlrs.com/api/organizations/10981/lrs/',
-    username: 'bde27ce0f7b36e',
-    password: '2bb3f290d84811',
-    allowFail: false,
-  })
-} catch (ex) {
-  console.log('Failed to setup LRS object: ', ex)
-  // TODO: do something with error, can't communicate with LRS
-}
-
-lrs.queryStatements({
-  params: {
-    verb: new TinCan.Verb({
-      id: 'http://adlnet.gov/expapi/verbs/completed',
-    }),
-    since: '2020-05-10T08:34:16Z',
-    
+fetch('https://watershedlrs.com/api/organizations/10981/lrs/statements', {
+  method: 'get',
+  headers: {
+    "Content-Type": "application/json",
+    'Authorization': 'Basic YmRlMjdjZTBmN2IzNmU6MmJiM2YyOTBkODQ4MTE=',
+    'X-Experience-API-Version': '1.0.3'
   },
-  callback: function (err, sr) {
-    if (err !== null) {
-      console.log('Failed to query statements: ' + err)
-      // TODO: do something with error, didn't get statements
-      return
-    }
-
-    if (sr.more !== null) {
-      // TODO: additional page(s) of statements should be fetched
-    }
-
-    var statements = sr.statements
-    console.log(statements)
-    var refinedStatements = statements.filter(function (el) {
+})
+.then(function(response){
+  return response.json();
+})
+.then(function(data){
+console.log(data);
+var statements = data.statements;
+var validStatements = statements.filter(function (el) {
+      return el.verb.id ==="http://adlnet.gov/expapi/verbs/completed";
+    })
+ var refinedStatements = validStatements.filter(function (el) {
       return el.actor.name
     })
     console.log("refinedStatements before");
-    console.log(refinedStatements)
-   
-   var refinedData=[];
+    console.log(refinedStatements);
+    var refinedData=[];
    refinedStatements.forEach(function (statement) {
        
-         refinedData.push([statement.actor.name, statement.target.name, statement.result.score.raw]);
+         refinedData.push([statement.actor.name, statement.object.name, statement.result.score.raw]);
       
       })
     console.log("summativeData after");  
     console.log(refinedData);
-    
     var sum = {}, summativeData;
     for (var i = 0, c; c = refinedData[i]; ++i) {
       if (undefined === sum[c[0]]) {
@@ -58,13 +38,14 @@ lrs.queryStatements({
       }
     }
     summativeData = Object.keys(sum).map(function (val) { return sum[val] });
+
     var sortedArray = summativeData.sort(function(a, b) {
     return b[2] - a[2];
     });
+
     console.log("sortedArray");
     console.log(sortedArray);
-    
-
+  
     var xValues = sortedArray.map(function(x){
     return x[0];
     })
@@ -74,9 +55,7 @@ lrs.queryStatements({
     })
     console.log(xValues);
     console.log(yValues);
-
-
-    var myChart = document.getElementById('myChart').getContext('2d')
+     var myChart = document.getElementById('myChart').getContext('2d')
     var barChart = new Chart(myChart, {
       type: 'bar',
       data: {
@@ -132,6 +111,9 @@ lrs.queryStatements({
           ],
         },
       },
-    })
-  },
+  })
+
+
+}).catch(function(err){
+console.log(err);
 })
