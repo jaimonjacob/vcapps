@@ -116,8 +116,8 @@ lrs.queryStatements({
           yAxes: [
             {
               ticks: {
-                suggestedMin: 5,
-                suggestedMax: 50,
+                max: 50,
+                min: 10,
                 fontColor: '#E5E2E8',
               },
             },
