@@ -54,12 +54,12 @@ lrs.queryStatements({
         sum[c[0]] = c;
       }
       else {
-        sum[c[0]][1] += c[1];
+        sum[c[0]][2] += c[2];
       }
     }
     summativeData = Object.keys(sum).map(function (val) { return sum[val] });
     var sortedArray = summativeData.sort(function(a, b) {
-    return b[3] - a[3];
+    return b[2] - a[2];
     });
     console.log("sortedArray");
     console.log(sortedArray);
