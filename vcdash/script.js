@@ -117,7 +117,7 @@ lrs.queryStatements({
             {
               ticks: {
                 max: 50,
-                min: 10,
+                min: 5,
                 fontColor: '#E5E2E8',
               },
             },
