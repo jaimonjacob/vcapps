@@ -13,7 +13,7 @@ fetch('https://watershedlrs.com/api/organizations/10981/lrs/statements', {
 //console.log(data);
 var statements = data.statements;
 var validStatements = statements.filter(function (el) {
-      return el.verb.id ==="http://adlnet.gov/expapi/verbs/completed";
+      return el.verb.id ==="http://adlnet.gov/expapi/verbs/completed" && el.result.score.raw !==0;
     })
  var refinedStatements = validStatements.filter(function (el) {
       return el.actor.name
@@ -95,8 +95,10 @@ var validStatements = statements.filter(function (el) {
           yAxes: [
             {
               ticks: {
-                max: 50,
-                min: 5,
+                steps: 5,
+                stepValue: 10, 
+                max: 50,       
+                min: 0,
                 fontColor: '#E5E2E8',
               },
             },
@@ -104,7 +106,7 @@ var validStatements = statements.filter(function (el) {
 
           xAxes: [
             {
-              ticks: {
+              ticks: {                
                 fontColor: '#E5E2E8',
               },
             },
@@ -115,5 +117,5 @@ var validStatements = statements.filter(function (el) {
 
 
 }).catch(function(err){
-console.log(err);
+//console.log(err);
 })
