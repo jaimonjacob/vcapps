@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<breeze-manifest version="1.0" xmlns="http://breeze.macromedia.com/ns/breeze-manifest" generator="Adobe Captivate 8">
+	<document type="captivate" icon="captivate" section-count="1"/>
+	<assets>
+		<asset type="document-view">
+			
+			<entry href="index.html" href-html5="" href-swf="" width="1024" height="627" type="" parameters="connect_support=true&amp;responsive=false&amp;scalable=true"/>
+			
+			
+
+<file href="index.html"/>
+<file href="assets/style.css"/>
+<file href="components/sdk/anwidget.js"/>
+<file href="components/ui/src/css.js"/>
+<file href="components/ui/src/textinput.js"/>
+<file href="images/_preloader.gif"/>
+
+
+
+
+
+
+			
+		</asset>
+		
+		<asset type="document-metadata" location="file"><file href="index.html_BDMetadata.xml"/></asset>
+		
+	</assets>
+</breeze-manifest>

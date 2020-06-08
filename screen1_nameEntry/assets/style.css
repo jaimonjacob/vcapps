@@ -1,0 +1,11 @@
+#insNameEntryField{
+	background-color: transparent;
+	border: none;
+	font-size: xx-large;
+	color: white;
+	text-align: center;
+}
+
+#insNameEntryField:focus {
+    outline: none;
+}
